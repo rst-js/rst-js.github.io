@@ -1,0 +1,25 @@
+{
+  "version": "v1",
+  "packages": {
+    "@rst-js/loader": {
+      "signature": "a916c5cbf6b63f58d6e97fab038d2c0a",
+      "file": true,
+      "replaced": "^0.0.3-5"
+    },
+    "@rst-js/writer": {
+      "signature": "35490159b7dac67ab6a89ae2b4b562fc",
+      "file": true,
+      "replaced": "^0.0.3-5"
+    },
+    "@rst-js/react": {
+      "signature": "69910b2a5bef60090b0c27f831bbd11c",
+      "file": true,
+      "replaced": "^0.0.3-5"
+    },
+    "@rst-js/parser": {
+      "signature": "f7db553d3d43df543cb0393f62f918ee",
+      "file": true,
+      "replaced": "^0.0.3-5"
+    }
+  }
+}

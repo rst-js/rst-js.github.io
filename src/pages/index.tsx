@@ -5,40 +5,49 @@ import { Container } from "ui/Container"
 import { grey, media } from "ui/styles"
 import { Link } from "gatsby"
 import { GitHub } from "ui/icons"
+import Preview from "ui/Preview"
+import PreviewErrorBoundary from "ui/PreviewErrorBoundary"
 
-export default () => (
-  <>
-    <Card>
-      <HeroContainer>
-        <Logo aria-hidden>reST</Logo>
+export default () => {
+  const [source, setSource] = React.useState(exampleSource)
+  const handleSourceChange = e => setSource(e.target.value)
 
-        <Heading>reStructuredText for JavaScript</Heading>
-
-        <Link to="/docs/">Documentation</Link>
-      </HeroContainer>
-    </Card>
-
-    <Demo>
-      <h2>Extensible markup language</h2>
+  return (
+    <>
       <Card>
-        <pre>{source}</pre>
+        <HeroContainer>
+          <Logo aria-hidden>reST</Logo>
+
+          <Heading>reStructuredText for JavaScript</Heading>
+
+          <Link to="/docs/">Documentation</Link>
+        </HeroContainer>
       </Card>
 
-      <h2>Rendered as React component</h2>
+      <Demo>
+        <h2>Extensible markup language</h2>
+        <Card>
+          <textarea value={source} onChange={handleSourceChange} />
+        </Card>
 
-      <Card>
-        <pre>{transformed}</pre>
-      </Card>
-    </Demo>
+        <h2>Rendered as React component</h2>
 
-    <Footer>
-      <span>"reStructuredText" is ONE word, not two</span>
-      <Link to="https://github.com/rst-js/rst-js">
-        <GitHub /> GitHub
-      </Link>
-    </Footer>
-  </>
-)
+        <Card>
+          <PreviewErrorBoundary>
+            <Preview source={source} output="jsx" />
+          </PreviewErrorBoundary>
+        </Card>
+      </Demo>
+
+      <Footer>
+        <span>"reStructuredText" is ONE word, not two</span>
+        <Link to="https://github.com/rst-js/rst-js">
+          <GitHub /> GitHub
+        </Link>
+      </Footer>
+    </>
+  )
+}
 
 const Card = styled.div`
   background-color: #fff;
@@ -119,7 +128,7 @@ const Footer = styled.footer`
   }
 `
 
-const source = `===============================
+const exampleSource = `===============================
 reStructuredText for JavaScript
 ===============================
 
@@ -128,18 +137,3 @@ and parser system. It is useful for in-line code documentation, \
 for quickly creating simple web pages, and for standalone documents. reStructuredText is \
 designed for extensibility for specific application domains.
 `
-
-const transformed = `export default () => (
-  <Document>
-    <Section depth={1}>
-      <Title>reStructuredText for JavaScript</Title>
-      
-      <Paragraph>
-        reStructuredText is an easy-to-read, what-you-see-is-what-you-get plaintext markup syntax \
-and parser system. It is useful for in-line code documentation, \
-for quickly creating simple web pages, and for standalone documents. reStructuredText is \
-designed for extensibility for specific application domains.
-      </Paragraph>
-    </Section>
-  </Document>
-)`

@@ -7,8 +7,6 @@ export const Layout = ({ children }) => (
   <>
     <Global
       styles={css`
-        ${resetCss};
-
         ${// preload font-awesome css to avoid icon size flickering on reload
         dom.css()};
 
